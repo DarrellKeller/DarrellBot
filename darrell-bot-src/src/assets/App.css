@@ -1,0 +1,241 @@
+:root {
+  --sat: env(safe-area-inset-top, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+  --sab: env(safe-area-inset-bottom,
+      0px);
+  --sal: env(safe-area-inset-left,
+      0px);
+}
+
+body {
+  background-color: #0a3543;
+}
+
+.App {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  width: 100%;
+  background-color: #0a3543;
+}
+
+.App footer {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  text-align: center;
+  height: calc(4vh + 50px + var(--sab));
+  width: 100%;
+}
+
+main {
+  position: absolute;
+  overflow-y: hidden;
+  height: calc(100% - 4vh - 50px - var(--sab));
+  width: 100%;
+}
+
+.chat-region {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+  box-sizing: border-box;
+  position: relative;
+  overflow-y: auto;
+  margin: auto;
+  padding: 0px 12px;
+  height: 100%;
+  width: 100%;
+  max-width: 768px;
+
+  /* Fancy Fade: https://pqina.nl/blog/fade-out-overflow-using-css-mask-image/ */
+  --scrollbar-width: 8px;
+  --fade-height: 6px;
+
+  --mask-image-content: linear-gradient(to bottom,
+      black var(--fade-height),
+      black calc(100% - var(--fade-height)),
+      transparent 100%);
+
+  --mask-size-content: calc(100% - var(--scrollbar-width)) 100%;
+  --mask-image-scrollbar: linear-gradient(black, black);
+  --mask-size-scrollbar: var(--scrollbar-width) 100%;
+
+  mask-image: var(--mask-image-content), var(--mask-image-scrollbar);
+  mask-size: var(--mask-size-content), var(--mask-size-scrollbar);
+  mask-position: 0 0, 100% 0;
+  mask-repeat: no-repeat, no-repeat;
+}
+
+.chat-region::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-region::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-region::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: #666a;
+}
+
+.chat-region::-webkit-scrollbar-thumb:hover {
+  background: #42AFF7;
+}
+
+.bg-image {
+  margin: 0;
+  position: fixed;
+  display: block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -25%);
+  height: max(290vh, 145vw);
+  min-height: 1160px;
+  width: max(460vh, 230vw);
+  min-width: 1840px;
+  z-index: 0;
+}
+
+form {
+  display: flex;
+  position: fixed;
+  bottom: calc(4vh + var(--sab));
+  margin: 0;
+  padding: 0;
+  height: 50px;
+  width: calc(100% - 24px);
+  font-size: 1.5rem;
+  border-radius: 12px;
+  background-color: white;
+}
+
+@media only screen and (min-width: 768px) {
+  form {
+    width: 768px;
+    margin: auto;
+  }
+}
+
+form button {
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  width: 50px;
+  background-color: transparent;
+}
+
+form button img {
+  margin: 5px;
+  padding: 0px;
+  height: 40px;
+  width: 40px;
+}
+
+form input {
+  padding: 0 0 0 10px;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  text-overflow: ellipsis;
+  background: transparent;
+  color: black;
+}
+
+button {
+  display: inline-block;
+  padding: 15px 32px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  text-align: center;
+  background-color: transparent;
+  color: black;
+}
+
+button:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.spacer {
+  margin-top: auto;
+}
+
+ul,
+li {
+  text-align: left;
+  list-style: none;
+}
+
+p {
+  position: relative;
+  padding: 10px 20px;
+  line-height: 24px;
+  border-radius: 25px;
+  text-align: center;
+  color: white;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+}
+
+.message img {
+  margin: auto 6px 16px 0px;
+  height: 40px;
+  min-height: 40px;
+  width: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+}
+
+.user {
+  flex-direction: row-reverse;
+}
+
+.user p {
+  align-self: flex-end;
+  border-radius: 25px 25px 4px 25px;
+  background: #42AFF7;
+  color: white;
+}
+
+.bot p {
+  border-radius: 25px 25px 25px 4px;
+  background: white;
+  color: black;
+}
+
+.disclaimer {
+  display: flex;
+  position: fixed;
+  padding: 0;
+  height: 4vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  white-space: pre-line;
+  bottom: var(--sab);
+}
+
+.disclaimer p {
+  line-height: min(max(1.5vh, 1.5vw), 1.25rem);
+  font-size: min(max(1.5vh, 1.5vw), 1.25rem);
+  color: #a0a0a0;
+}
+
+.disclaimer p a {
+  color: #a0a0a0;
+}
