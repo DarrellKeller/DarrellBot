@@ -18,7 +18,7 @@ function App() {
     }
   }, [messages]);
 
-  const apiKey = 'VF.DM.6328c179b6503d000741dd2f.iMz8Edbuxati1JMS';
+  const apiKey = '{apikey}';
 
   const userID = useMemo(() => cuid(), []);
 
